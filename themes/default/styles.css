@@ -1,0 +1,79 @@
+.hidden{
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+header{
+  position: center;
+  text-align: center;
+}
+
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-btn span {
+  display: block;
+  height: 4px;
+  background-color: #333;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -290px;
+  width: 250px;
+  height: 100%;
+  background-color: #f1f1f1;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 9998;
+}
+
+.sidebar ul {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.main-wrapper {
+  padding: 20px;
+  margin-left: 0; /* Asegura que el contenido esté alineado inicialmente */
+  transition: margin-left 0.3s ease; /* Agrega una transición para un efecto suave */
+}
+
+.sidebar.active {
+  left: 0; /* Mostrar el menú lateral cuando tiene la clase "active" */
+}
+
+.main-wrapper.active {
+  margin-left: 290px; /* Desplaza el contenido cuando el menú está abierto */
+}
+
+
