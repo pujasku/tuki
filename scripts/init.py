@@ -47,9 +47,9 @@ def generate_static_website(html_content, output_folder):
 
 def init(input_file,title):
     #some folder declarations
-    template_folder = "themes/default"
-    output_folder = "output"
-    template = "themes/default/index.html"
+    template_folder = "../themes/default"
+    output_folder = "../output"
+    template = "../themes/default/index.html"
     #copy template files
     copy_files(template_folder,output_folder)
     #initialize site
