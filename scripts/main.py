@@ -16,7 +16,7 @@ def print_help():
     print(" init: initializes the site and its main article")
     print("     usage: tuki init path-to-markdown-file.md title")
     print(" section : modify a section or add a new one ")
-    print("     usage: tuki section index path-to-markdown-file.md title")
+    print("     usage: tuki section index path-to-markdown-file.md title\n")
 
 
 def main():
