@@ -1,6 +1,9 @@
 import os 
-import markdown
 import shutil
+from . import genFunc as gp
+
+CONFIG_FILE = "config.json"
+
 
 def copy_files(source_folder, destination_folder):
     try:
@@ -31,13 +34,6 @@ def insert_html_into_html(original_html, insert_html,title):
         return result_html
     except: print(">>Error inserting content into template")
 
-def read_markdown_file(input_file):
-    with open(input_file, 'r', encoding='utf-8') as file:
-        return file.read()
-
-def convert_markdown_to_html(markdown_content):
-    return markdown.markdown(markdown_content)
-
 def generate_static_website(html_content, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -47,14 +43,16 @@ def generate_static_website(html_content, output_folder):
 
 def init(input_file,title):
     #some folder declarations
-    template_folder = "../themes/default"
-    output_folder = "../output"
-    template = "../themes/default/index.html"
+    conf = gp.loadConf(CONFIG_FILE)
+    template_folder = conf['template_folder']
+    output_folder = conf['output_folder']
+    template = template_folder + '/index.html'
+
     #copy template files
     copy_files(template_folder,output_folder)
     #initialize site
-    markdown_content = read_markdown_file(input_file)
-    html_content = convert_markdown_to_html(markdown_content)
+    markdown_content = gp.read_markdown_file(input_file)
+    html_content = gp.convert_markdown_to_html(markdown_content)
     final_html = insert_html_into_html(template,html_content,title)
     generate_static_website(final_html, output_folder)
     print(">>init complete, tuki")

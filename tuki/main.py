@@ -1,6 +1,6 @@
 import sys
-from init import init
-from section import add_article
+from . import start
+from . import section
 def print_help():
     print(r""" 
   _______    _    _
@@ -20,13 +20,13 @@ def print_help():
 
 
 def main():
-    try:
+   try:
         if sys.argv[1]=="help": print_help()
         if sys.argv[1]=="init":
-                init(sys.argv[2],sys.argv[3])
+                start.init(sys.argv[2],sys.argv[3])
         if sys.argv[1]== "section":
-                add_article(sys.argv[2],sys.argv[3],sys.argv[4])
-    except: print("use tuki help for help")
+                section.add_article(sys.argv[2],sys.argv[3],sys.argv[4])
+   except: print("use tuki help for help")
 
 if __name__ == "__main__":
     main()

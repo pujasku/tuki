@@ -1,5 +1,7 @@
 import os
-import markdown
+from . import genFunc as gp
+
+CONFIG_FILE = "config.json"
 
 def replaceBetween(mark1,mark2,text,new_text):
     begin = text.find(mark1)
@@ -11,14 +13,6 @@ def replaceBetween(mark1,mark2,text,new_text):
         return modified_text
     else:
         return text
-
-
-def read_markdown_file(input_file):
-    with open(input_file, 'r', encoding='utf-8') as file:
-        return file.read()
-
-def convert_markdown_to_html(markdown_content):
-    return markdown.markdown(markdown_content)
 
 def edit_html(index,original_html_path,new_article,title):
     try:
@@ -62,9 +56,10 @@ def write_new_hml(html_content, output_folder):
         file.write(html_content)
 
 def add_article(index,filepath,title):
-    markdown_article = read_markdown_file(filepath)
-    html_article = convert_markdown_to_html(markdown_article)
-    original_path ="../output/index.html"
-    output = "../output"
+    conf = gp.loadConf(CONFIG_FILE)
+    output = conf['output_folder']
+    original_path = output + '/index.html'
+    markdown_article = gp.read_markdown_file(filepath)
+    html_article = gp.convert_markdown_to_html(markdown_article)
     new_html = edit_html(index,original_path,html_article,title)
     write_new_hml(new_html,output)
